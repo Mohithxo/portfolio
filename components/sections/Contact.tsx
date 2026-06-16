@@ -218,15 +218,15 @@ export default function Contact() {
 
             {/* Top dial / frequency strip */}
             <div
-              className="rounded-xl px-4 py-3 mb-5 flex items-center gap-4"
+              className="rounded-xl px-3 sm:px-4 py-3 mb-5 flex items-center gap-3 sm:gap-4"
               style={{ border: `1.5px solid ${CYAN}`, boxShadow: `0 0 14px ${CYAN}44, inset 0 0 14px ${CYAN}11` }}
             >
-              <div className="font-display tabular-nums text-2xl md:text-3xl font-bold tracking-wider" style={{ color: PINK, textShadow: `0 0 14px ${PINK}` }}>
+              <div className="font-display tabular-nums text-xl sm:text-2xl md:text-3xl font-bold tracking-wider flex-shrink-0" style={{ color: PINK, textShadow: `0 0 14px ${PINK}` }}>
                 {freq}
                 <span className="text-xs ml-1 text-white/40">MHz</span>
               </div>
               {/* dial ticks + needle */}
-              <div className="relative flex-1 h-8 overflow-hidden">
+              <div className="relative flex-1 min-w-0 h-8 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-between">
                   {Array.from({ length: 40 }).map((_, i) => (
                     <span key={i} className="w-px bg-white/15" style={{ height: i % 5 === 0 ? "100%" : "55%" }} />
@@ -458,9 +458,9 @@ export default function Contact() {
                 { k: "Availability", v: "Open to full-time & freelance" },
                 { k: "Response", v: "Usually within 24 hours" },
               ].map((d) => (
-                <div key={d.k} className="flex items-start justify-between gap-4 text-sm">
-                  <span className="text-white/30 text-[10px] font-display tracking-[0.2em] uppercase pt-0.5">{d.k}</span>
-                  <span className="text-white/70 text-right">{d.v}</span>
+                <div key={d.k} className="flex items-start justify-between gap-3 text-sm">
+                  <span className="text-white/30 text-[10px] font-display tracking-[0.2em] uppercase pt-0.5 flex-shrink-0">{d.k}</span>
+                  <span className="text-white/70 text-right break-words min-w-0">{d.v}</span>
                 </div>
               ))}
             </div>

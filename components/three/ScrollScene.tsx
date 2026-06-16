@@ -54,9 +54,9 @@ export default function ScrollScene() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    const nodeCount = isMobile ? 28 : 70;
-    const dustCount = isMobile ? 40 : 110;
-    const maxDist = isMobile ? 130 : 175;
+    const nodeCount = isMobile ? 52 : 70;
+    const dustCount = isMobile ? 85 : 110;
+    const maxDist = isMobile ? 160 : 175;
 
     // Offscreen low-res aurora buffer (≈1/6 res → blurs for free when scaled up)
     const aurora = document.createElement("canvas");
@@ -161,7 +161,7 @@ export default function ScrollScene() {
 
       // ── Layer 1: aurora (drawn small, scaled up = soft) ──
       drawAurora(theme, next);
-      ctx.globalAlpha = isMobile ? 0.55 : 0.7;
+      ctx.globalAlpha = isMobile ? 0.68 : 0.7;
       ctx.imageSmoothingEnabled = true;
       ctx.drawImage(aurora, 0, 0, W, H);
       ctx.globalAlpha = 1;
