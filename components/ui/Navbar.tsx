@@ -154,7 +154,7 @@ export default function Navbar() {
                 </span>
               </div>
 
-              {/* Résumé — drop your PDF at /public/resume.pdf */}
+              {/* Résumé — PDF served from /public/resume.pdf */}
               <a
                 href="/resume.pdf"
                 target="_blank"
