@@ -3,25 +3,165 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-base: #0a0a0f;
+  --color-blue: #0ea5e9;
+  --color-violet: #8b5cf6;
+  --color-cyan: #06b6d4;
+  --color-gold: #f59e0b;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-border: rgba(255, 255, 255, 0.08);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  cursor: none;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  background-color: var(--color-base);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-base);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-blue);
+  border-radius: 2px;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .font-display {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4), 0 0 40px rgba(14, 165, 233, 0.15);
+  }
+  .glow-violet {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.15);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-blue), var(--color-violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .border-gradient {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply relative max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32;
+  }
+  .section-heading {
+    @apply font-display font-bold text-4xl lg:text-5xl tracking-tight;
+  }
+}
+
+/* ── Cinematic / illusional effects ───────────────────────────────── */
+
+/* HUD corner bracket — four absolutely-positioned spans share this */
+.hud-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--hud-color, rgba(14, 165, 233, 0.6));
+  pointer-events: none;
+}
+
+/* Diagonal holographic sheen swept across a surface */
+.holo-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.13) 48%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 70%
+  );
+  background-size: 280% 280%;
+  background-position: 140% 0;
+  mix-blend-mode: screen;
+}
+.holo-sheen.sweeping {
+  animation: sheen-sweep 0.9s ease-out forwards;
+}
+
+@keyframes sheen-sweep {
+  from { background-position: 140% 0; }
+  to { background-position: -40% 0; }
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4%, -3%) scale(1.08); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(2000%); opacity: 0; }
+}
+
+@keyframes hud-flicker {
+  0%, 100% { opacity: 0.85; }
+  48% { opacity: 0.85; }
+  50% { opacity: 0.45; }
+  52% { opacity: 0.9; }
+}
+
+@keyframes beam-sweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* clip-path wipe reveal — toggled by .revealed once in view */
+.clip-wipe {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.clip-wipe.revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holo-sheen.sweeping,
+  .clip-wipe { animation: none !important; transition: none !important; }
+  .clip-wipe { clip-path: inset(0 0 0 0); }
 }
