@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.6.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
     "gsap": "^3.15.0",
@@ -19,14 +17,12 @@
     "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^3.6.0",
-    "three": "^0.184.0"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/three": "^0.184.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "postcss": "^8",
