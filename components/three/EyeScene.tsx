@@ -235,7 +235,7 @@ export default function EyeScene() {
 
       // Fade the eye out past the hero so sections stay legible.
       const fade = 1 - clamp(scrollStore.progress * 2.4, 0, 0.78);
-      const baseAlpha = (isMobile ? 0.42 : 0.6) * fade;
+      const baseAlpha = (isMobile ? 0.55 : 0.6) * fade;
 
       const cx = W / 2;
       const cy = H * (isMobile ? 0.4 : 0.46);
@@ -264,7 +264,7 @@ export default function EyeScene() {
       const pattern = Math.floor(t / CYCLE) % 4;
 
       // ── Mandala petals (behind the central eye) ──
-      if (petal > 0.01 && !isMobile) {
+      if (petal > 0.01) {
         const count = 8;
         const Rmax = eyeW * 0.62;
         const R = petal * Rmax;

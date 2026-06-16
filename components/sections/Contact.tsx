@@ -458,9 +458,9 @@ export default function Contact() {
                 { k: "Availability", v: "Open to full-time & freelance" },
                 { k: "Response", v: "Usually within 24 hours" },
               ].map((d) => (
-                <div key={d.k} className="flex items-start justify-between gap-3 text-sm">
-                  <span className="text-white/30 text-[10px] font-display tracking-[0.2em] uppercase pt-0.5 flex-shrink-0">{d.k}</span>
-                  <span className="text-white/70 text-right break-words min-w-0">{d.v}</span>
+                <div key={d.k} className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3 text-sm">
+                  <span className="text-white/30 text-[10px] font-display tracking-[0.2em] uppercase sm:pt-0.5 flex-shrink-0">{d.k}</span>
+                  <span className="text-white/75 sm:text-right break-words min-w-0">{d.v}</span>
                 </div>
               ))}
             </div>
