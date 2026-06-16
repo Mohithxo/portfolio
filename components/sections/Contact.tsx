@@ -244,11 +244,11 @@ export default function Contact() {
 
             {/* Body: speaker · cassette · speaker */}
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr_1fr] gap-5 items-center">
-              <div className="hidden md:block"><Speaker playing={playing} color={PURPLE} /></div>
+              <div className="hidden md:block pointer-events-none"><Speaker playing={playing} color={PURPLE} /></div>
 
               {/* Cassette / display */}
               <div
-                className="rounded-2xl p-5"
+                className="relative z-10 rounded-2xl p-5"
                 style={{ border: `1.5px solid ${PINK}`, boxShadow: `0 0 16px ${PINK}33, inset 0 0 18px rgba(255,45,149,0.06)` }}
               >
                 {/* now playing display */}
@@ -290,7 +290,7 @@ export default function Contact() {
                 </div>
 
                 {/* transport controls */}
-                <div className="flex items-center justify-center gap-5">
+                <div className="relative z-10 flex items-center justify-center gap-5">
                   <button
                     onClick={() => selectIndex(index - 1)}
                     data-cursor="hover"
@@ -329,11 +329,11 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="hidden md:block"><Speaker playing={playing} color={PURPLE} /></div>
+              <div className="hidden md:block pointer-events-none"><Speaker playing={playing} color={PURPLE} /></div>
             </div>
 
             {/* Knobs row — TUNE is draggable */}
-            <div className="flex items-center justify-center gap-8 mt-6">
+            <div className="relative z-10 flex items-center justify-center gap-8 mt-6">
               {/* draggable tune knob */}
               <div className="flex flex-col items-center gap-1.5">
                 <div
@@ -354,7 +354,7 @@ export default function Contact() {
 
               {/* decorative knobs */}
               {[CYAN, PURPLE].map((c, i) => (
-                <div key={i} className="flex flex-col items-center gap-1.5">
+                <div key={i} className="flex flex-col items-center gap-1.5 pointer-events-none">
                   <motion.div
                     className="w-10 h-10 rounded-full"
                     style={{ border: `2px solid ${c}`, boxShadow: `0 0 12px ${c}55` }}
@@ -369,7 +369,7 @@ export default function Contact() {
             </div>
 
             {/* bottom equalizer buttons (decor) */}
-            <div className="flex justify-center gap-1.5 mt-6">
+            <div className="flex justify-center gap-1.5 mt-6 pointer-events-none">
               {Array.from({ length: 12 }).map((_, i) => (
                 <motion.span
                   key={i}
